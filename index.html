@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Readysaster App</title>
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" >
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+      <style>
+         body {
+         background:#ddd;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="navbar navbar-default">
+         <br>
+         <div class="text-center" style="vertical-align:middle"><img src="images/banner.png" style="max-width:55%;"><img src="images/builtlogo.png" style="max-width:20%"></span></div>
+         <br>
+      </div>
+      <div id="loadingtext" class="text-center center-block" style="max-width:640px;">
+         <img src="images/tagline.png" style="width:85%;padding-bottom: 10px">
+         <h3><img id="imgloader" src="images/ajax-loader.gif" style="width:32px;opacity:0.5;vertical-align:middle;-webkit-border-radius:40px;border-radius: 40px;">&nbsp;<b>Loading...</b></h3>
+         <br>
+      </div>
+      <div class="container">
+         <div style="max-width:640px;margin-left:auto;margin-right:auto;">
+            <!--Always Insert Content Here - START HERE-->
+            <!-- Offline Mode Alert - START -->
+            <div class="alert alert-info offlinemodeind" style="display:none">
+               <b>Offline Mode Activated</b><br>
+               <span class="pull-right" style="margin-left:10px;font-size:3em"><span class="glyphicon glyphicon-info-sign"></span></span>
+               <small>We saw that you are disconnected to the internet, so we made iLigtas App suitable for those who are offline</small>
+               <span class="clearfix"></span>
+            </div>
+            <!-- Offline Mode Alert - END -->
+            <!--login container start-->
+            <div id="logincont" style="display:none">
+               <div class="text-center"><img src="images/logo-mobileapp.png" style="width:50%;padding-bottom: 10px"><br><img id="tagline" src="images/tagline.png" style="display:none;width:100%;padding-bottom: 10px"></div>
+               <br>
+			   <p class="text-center">Welcome to <b>iLigtas-Olongapo Beta Version</b>. Some of the Functionalities in the app are not yet available and will be added soon. For the meantime, you may check the available functions by pressing "Continue"</p>
+			   <a href = "javascript:continuebeta();" class="btn btn-success btn-block"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;Continue</a>
+			   <a href="emergencymode.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;Emergency Mode</a>
+            </div>
+            <!--login container end-->
+            <div class="text-center"><br>iLigtas | READYSASTER 2014<br></div>
+            <!-- DO NOT REMOVE THIS - Used to Determine Online from Offline Mode-->
+            <div class="offlinemodeind text-center" style="display:none"><span class="label label-info">OFFLINE MODE ACTIVATED</span></div>
+            <!--Always Insert Content Here - END HERE-->
+         </div>
+         <br>
+      </div>
+      <!--- Error Modal Start -->
+      <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog modal-vertical-centered">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 id="popuptitle" class="modal-title"></h4>
+               </div>
+               <div class="modal-body">
+                  <p id="popuptext"></p>
+				  <div id="footercontent"></div>
+				  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--- Error Modal End -->
+	  <!--- Terms and Conditions Modal Start -->
+      <div class="modal fade" id="termsmodal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Terms and Conditions</h4>
+               </div>
+               <div class="modal-body">
+                  <h2 class="text-center">Terms and Conditions</h2>
+					<p align="justify">
+						<b>In using this application you are deemed to have read and agreed to the following terms and conditions:</b>
+						<br>
+						This application <b>MUST</b> be used <b>ONLY</b> for the <b>PURPOSE</b> of <b>Disaster Risk Reduction, Response and Management</b>. We constantly review our systems and data to ensure the best possible service to you. The Government has created specific offences for unauthorized actions against computer systems and data. We will investigate any such actions with a view to prosecuting and/or taking civil proceedings to recover damages against those responsible.
+						<br>
+						<h4>Acceptable Use</h4>
+						You shall not do any of the following or permit any other third parties to do any of the following:
+						<ol type="a">
+							<li>Post or transmit any unlawful, deceiving, threatening, abusive, profane information of any kind, including, without limitation, any transmission constituting or encouraging conduct that would constitute a criminal offense, give rise to civil liability, or otherwise violate any local, provincial, state, national or international law and regulations.</li>
+							<li>Post or transmit any information or software that the sender is aware contains a virus, worm, or other harmful component.</li>
+						</ol>
+						You have an <b>AFFIRMATIVE OBLIGATION</b> to provide the application with correct information. You agree to provide true, accurate, current and complete information and to maintain and promptly update your information as necessary. You agree not to impersonate any other person you are not authorized to use.
+						<br><br>
+						<p class="text-center">&copy; iLigtas May 2014. All Rights Reserved</p>
+					</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--- Terms Modal End -->
+      <script src="js/jquery-1.10.2.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.validate.js"></script>
+      <script>
+		function openterms()
+		  {
+		  //Opens the Terms Modal
+		   $('#termsmodal').modal('show');
+		  }
+		 function continuebeta()
+		  {
+			localStorage.setItem("datauser","testuser");
+			location.href="home.html";
+		  }
+         setTimeout(function(){
+         if(localStorage.getItem("datauser") === null || localStorage.getItem("datauser") == "") //checks if theres an account logged-in
+         	{
+         	$( "#loadingtext" ).slideUp("fast"); //hides Loading Text below Header
+         	$( "#logincont" ).slideDown("fast"); //shows Login Form Container
+         	$( "#tagline" ).delay(250).show("fast"); //Tagline Animation
+         	}
+         else
+         	{
+         	location.href="home.html";
+         	}
+         },1000);
+      </script>
+   </body>
+</html>

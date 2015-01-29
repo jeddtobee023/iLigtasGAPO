@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Readysaster App</title>
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" >
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+      <style>
+         body {
+         background:#ddd;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="navbar navbar-default">
+         <br>
+         <div class="center-block">
+            <div class="text-center">
+               <img src="images/banner-with-text.png" style="max-width:80%;margin-bottom:10px;">
+               <div class="list-group" style="padding:0;margin-bottom:0;">
+                  <a href="javascript:ocmopts()" class="list-group-item active" style="background:#222;padding-top:2px;padding-bottom:2px"><small>MENU</small></a>
+               </div>
+            </div>
+            <!-- More Options Here -->
+            <div id="moremenu" style="display:none">
+               <div class="list-group" style="padding:0;margin-bottom:0;">
+				  <a href="javascript:alert('This Function is not yet available.')" class="list-group-item active lc-item" style="background: #444">
+                     <div class="text-center"><span class="glyphicon glyphicon-user" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;Apply as Volunteer</div>
+                  </a>
+				  <a href="about.html" class="list-group-item active lc-item" style="background: #666">
+                     <div class="text-center"><span class="glyphicon glyphicon-info-sign" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;About iLigtas</div>
+                  </a>
+                  <a href="javascript:logoutaccount()" class="list-group-item active lc-item" style="background: #444">
+                     <div class="text-center"><span class="glyphicon glyphicon-lock" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;Logout</div>
+                  </a>
+               </div>
+            </div>
+            <!-- end more options-->
+         </div>
+      </div>
+      <div id="bottommenu" class="navbar navbar-default navbar-fixed-bottom" style="display:none;min-height:0;">
+         <div style="max-width:640px;margin-left:auto;margin-right:auto;">
+            <div class="btn-group btn-group-justified">
+               <a href="home.html" class="btn btn-warning nav-btn"><img src="images/ihanda.png" class="lc-icn"><br><small>iHanda</small></a>
+               <a href="itulong.html" class="btn btn-danger nav-btn"><img src="images/itulong.png" class="lc-icn"><br><small>iTulong</small></a>
+               <a href="ibangon.html" class="btn btn-success nav-btn"><img src="images/ibangon.png" class="lc-icn"><br><small>iBangon</small></a>
+            </div>
+         </div>
+      </div>
+      <div id="loadingtext" class="text-center center-block" style="max-width:640px;">
+         <h3><img id="imgloader" src="images/ajax-loader.gif" style="width:32px;opacity:0.5;vertical-align:middle;-webkit-border-radius:40px;border-radius: 40px;">&nbsp;<b>Loading...</b></h3>
+         <br>
+      </div>
+      <div class="container">
+         <div style="max-width:640px;margin-left:auto;margin-right:auto;">
+            <!-- Offline Mode Alert - START -->
+            <div class="alert alert-info offlinemodeind" style="display:none">
+               <b>Offline Mode Activated</b><br>
+               <span class="pull-right" style="margin-left:10px;font-size:3em"><span class="glyphicon glyphicon-info-sign"></span></span>
+               <small>We saw that you are disconnected to the internet, so we made iLigtas App suitable for those who are offline</small>
+               <span class="clearfix"></span>
+            </div>
+            <!-- Offline Mode Alert - END -->
+            <!-- Insert Content Here - START -->
+            <!-- START Content Container -->
+            <div id="contentcontainer" style="display:none">
+               <div class="alert alert-success">
+                  <span class="pull-right" style="margin-left:10px;"><img src="images/ibangon.png" style="width:54px;vertical-align:middle"></span></span>
+                  <h2>iBangon</h2>
+                  <small>I Share. Improve disaster recovery and rescue operations management.</small>
+                  <span class="clearfix"></span>
+               </div>
+               <h2 class="text-center">Functions for this area are coming soon.</h2>
+            </div>
+            <!-- END Content Container -->
+            <!-- END Content Here -->
+            <div class="text-center"><br>iLigtas | READYSASTER 2014<br></div>
+            <!-- DO NOT REMOVE THIS - Used to Determine Online from Offline Mode-->
+            <div class="offlinemodeind text-center" style="display:none"><span class="label label-info">OFFLINE MODE ACTIVATED</span></div>
+         </div>
+         <div style="height:100px;"></div>
+      </div>
+     <!--- Error Modal Start -->
+      <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog modal-vertical-centered">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 id="popuptitle" class="modal-title"></h4>
+               </div>
+               <div class="modal-body">
+                  <p id="popuptext"></p>
+				  <div id="footercontent"></div>
+				  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--- Error Modal End -->
+      <script src="js/jquery-1.10.2.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.validate.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	  <script type="text/javascript" src="js/gmap3.min.js"></script>
+      <script src="js/chart.min.js"></script>
+      <script>
+	   function ocmopts()
+         {
+         //opens and closes the more options menu
+         $( "#moremenu" ).slideToggle("fast");
+         }
+         $(function()
+         {
+         $( "#loadingtext" ).delay(500).slideUp("fast"); //hides Loading Text below Header
+         $( "#bottommenu" ).slideDown("slow"); // Bottom Navbar Animation
+         $( "#contentcontainer" ).slideDown("fast"); // Content Animation
+         });
+      </script>
+   </body>
+</html>

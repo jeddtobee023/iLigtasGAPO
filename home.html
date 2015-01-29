@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Readysaster App</title>
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" >
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+      <link href="css/twitter-styles.css" rel="stylesheet" type="text/css" />
+      <style>
+         body {
+         background:#ddd;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="navbar navbar-default">
+         <br>
+         <div class="center-block">
+            <div class="text-center">
+               <img src="images/banner-with-text.png" style="max-width:80%;margin-bottom:10px;">
+               <div class="list-group" style="padding:0;margin-bottom:0;">
+                  <a href="javascript:ocmopts()" class="list-group-item active" style="background:#222;padding-top:2px;padding-bottom:2px"><small>MENU</small></a>
+               </div>
+            </div>
+            <!-- More Options Here -->
+            <div id="moremenu" style="display:none">
+               <div class="list-group" style="padding:0;margin-bottom:0;">
+				  <a href="javascript:alert('This Function is not yet available.')" class="list-group-item active lc-item" style="background: #444">
+                     <div class="text-center"><span class="glyphicon glyphicon-user" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;Apply as Volunteer</div>
+                  </a>
+				  <a href="about.html" class="list-group-item active lc-item" style="background: #666">
+                     <div class="text-center"><span class="glyphicon glyphicon-info-sign" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;About iLigtas</div>
+                  </a>
+                  <a href="javascript:logoutaccount()" class="list-group-item active lc-item" style="background: #444">
+                     <div class="text-center"><span class="glyphicon glyphicon-lock" style="font-size:36px;vertical-align:middle"></span>&nbsp;&nbsp;&nbsp;Logout</div>
+                  </a>
+               </div>
+            </div>
+            <!-- end more options-->
+         </div>
+      </div>
+      <div id="bottommenu" class="navbar navbar-default navbar-fixed-bottom" style="display:none;min-height:0;">
+         <div style="max-width:640px;margin-left:auto;margin-right:auto;">
+            <div class="btn-group btn-group-justified">
+               <a href="home.html" class="btn btn-warning nav-btn"><img src="images/ihanda.png" class="lc-icn"><br><small>iHanda</small></a>
+               <a href="itulong.html" class="btn btn-danger nav-btn"><img src="images/itulong.png" class="lc-icn"><br><small>iTulong</small></a>
+               <a href="ibangon.html" class="btn btn-success nav-btn"><img src="images/ibangon.png" class="lc-icn"><br><small>iBangon</small></a>
+            </div>
+         </div>
+      </div>
+      <div id="loadingtext" class="text-center center-block" style="max-width:640px;">
+         <h3><img id="imgloader" src="images/ajax-loader.gif" style="width:32px;opacity:0.5;vertical-align:middle;-webkit-border-radius:40px;border-radius: 40px;">&nbsp;<b>Loading...</b></h3>
+         <br>
+      </div>
+      <div class="container">
+         <div style="max-width:640px;margin-left:auto;margin-right:auto;">
+            <!-- Offline Mode Alert - START -->
+            <div class="alert alert-info offlinemodeind" style="display:none">
+               <b>Offline Mode Activated</b><br>
+               <span class="pull-right" style="margin-left:10px;font-size:3em"><span class="glyphicon glyphicon-info-sign"></span></span>
+               <small>We saw that you are disconnected to the internet, so we made iLigtas App suitable for those who are offline</small>
+               <span class="clearfix"></span>
+            </div>
+            <!-- Offline Mode Alert - END -->
+            <!-- Insert Content Here - START -->
+            <!-- START Content Container -->
+            <div id="contentcontainer" style="display:none">
+               <div class="alert alert-warning">
+                  <span class="pull-right" style="margin-left:10px;"><img src="images/ihanda.png" style="width:54px;vertical-align:middle"></span></span>
+                  <h2>iHanda</h2>
+                  <small>I Prepare. Enhance readiness for disasters. Provides real time disaster advisory and news.</small>
+                  <span class="clearfix"></span>
+               </div>
+			   <div class="panel panel-info onlyonline" style="margin-bottom:5px">
+					<div class="panel-heading" style="padding:1px 1px 1px 1px;">
+						<a class="btn btn-info btn-block" data-toggle="collapse" href="#cfeeds">
+						<span class="glyphicon glyphicon-th-list"></span>&nbsp;<b>Disaster Related Feeds</b> (Via <b>Twitter</b>)
+						</a>
+					</div>
+					<div id="cfeeds" class="panel-collapse collapse">
+					  <div class="panel-body" style="background:#eee;">
+					  <div id="twitter-feed"></div>
+					  </div>
+				   </div>
+			   </div>
+            </div>
+            <!-- END Content Container -->
+            <!-- END Content Here -->
+            <div class="text-center"><br>iLigtas | READYSASTER 2014<br></div>
+            <!-- DO NOT REMOVE THIS - Used to Determine Online from Offline Mode-->
+            <div class="offlinemodeind text-center" style="display:none"><span class="label label-info">OFFLINE MODE ACTIVATED</span></div>
+         </div>
+         <div style="height:100px;"></div>
+      </div>
+      <!--- Error Modal Start -->
+      <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog modal-vertical-centered">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 id="popuptitle" class="modal-title"></h4>
+               </div>
+               <div class="modal-body">
+                  <p id="popuptext"></p>
+				  <div id="footercontent"></div>
+				  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--- Error Modal End -->
+      <script src="js/jquery-1.10.2.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/jquery.validate.js"></script>
+      <script type="text/javascript" src="js/twitterfeed.js"></script>
+      <script>
+         function ocmopts()
+         {
+         //opens and closes the more options menu
+         $( "#moremenu" ).slideToggle("fast");
+         }
+         $(function(){
+		 $.get( "inserts/hotlinesinfographics.html", function( data ) {
+		 $( "#contentcontainer" ).append( data );
+		 });
+         $( "#loadingtext" ).delay(500).slideUp("fast"); //hides Loading Text below Header
+         $( "#bottommenu" ).slideDown("slow"); // Bottom Navbar Animation
+         $( "#contentcontainer" ).slideDown("fast"); // Content Animation
+		 $("#precipitaionmap").attr("src","http://openweathermap.org/help/tiles.html?lat=14.27&lon=122.14&opacity=0.4&l=precipitation&zoom=5");
+         });
+      </script>
+   </body>
+</html>
